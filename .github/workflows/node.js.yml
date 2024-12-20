@@ -24,14 +24,14 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Create Environment
-      uses: mkyai/env-builder@v1.0.1
-      with:
-        secrets: ${{ toJson(secrets) }}
-        variables: ${{ toJson(vars) }}
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Create Environment
+      uses: mkyai/env-builder@v1.0.1
+      with:
+        secrets: ${{ toJson(secrets) }}
+        variables: ${{ toJson(vars) }}
     - run: node --env-file=.env main.js

@@ -15,6 +15,8 @@ jobs:
   build:
     environment: dev
     runs-on: ubuntu-latest
+    env:
+      VARS: ${{vars.VARS}}
 
     strategy:
       matrix:

@@ -34,4 +34,14 @@ jobs:
       with:
         secrets: ${{ toJson(secrets) }}
         variables: ${{ toJson(vars) }}
-    - run: node --env-file=.env main.js
+    - run: docker build -t dev .
+  deploy:
+    environment: dev
+    name: 'deploy'
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy image
+        run: docker run dev
+    

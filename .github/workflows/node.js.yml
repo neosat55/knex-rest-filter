@@ -15,8 +15,8 @@ jobs:
   build:
     environment: dev
     runs-on: ubuntu-latest
-    env:
-      VARS: ${{vars.VARS}}
+    # env:
+    #   VARS: ${{vars.VARS}}
 
     strategy:
       matrix:
@@ -24,6 +24,14 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - name: Extract version from package.json
+      uses: sergeysova/jq-action@v2
+      id: version
+      with:
+        cmd: |
+          for s in $(echo ${{toJSON(vars)}} | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" ); do
+              export $s
+          done
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4

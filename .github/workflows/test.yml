@@ -1,0 +1,28 @@
+name: Delete stand container
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - feat/**
+      - feature/**
+      - hotfix/**
+
+env:
+  STAND_NAME: ${{github.ref_name}}
+
+jobs:
+  closed:
+    runs-on: ubuntu-22.04
+    if: github.event.pull_request.closed == true
+    steps:
+      - name: delete existed stand
+        run: |
+          ./github/scripts/hello.sh hello
+  merged:
+    runs-on: ubuntu-22.04
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: delete existed stand
+        run: |
+          ./github/scripts/hello.sh hey

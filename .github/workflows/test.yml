@@ -15,12 +15,13 @@ jobs:
     runs-on: ubuntu-22.04
     if: github.event.pull_request.closed == true
     steps:
-      - name: delete existed stand
-        run: |
-          ./github/scripts/hello.sh hello
+      - uses: actions/checkout@v4
+      - name: on closed
+        run: ./github/scripts/hello.sh knexy
   merged:
     runs-on: ubuntu-22.04
     if: github.event.pull_request.merged == true
     steps:
-      - name: delete existed stand
-        run: ./.github/scripts/hello.sh
+      - uses: actions/checkout@v4
+      - name: on merged
+        run: ./.github/scripts/hello.sh filtry

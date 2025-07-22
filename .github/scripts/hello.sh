@@ -4,5 +4,5 @@ set -e
 
 REPO=$1
 
-echo "$REPO"
+echo "hello from $REPO"
 

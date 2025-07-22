@@ -1,11 +1,11 @@
 name: Delete stand container
 on:
-  pull_request_target:
+  pull_request:
     types:
       - closed
     branches:
-#      - master
-      - feat/**
+      - master
+      - dev
 
 env:
   STAND_NAME: ${{github.ref_name}}

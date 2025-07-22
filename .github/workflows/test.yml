@@ -4,7 +4,7 @@ on:
     types:
       - closed
     branches:
-      - master
+#      - master
       - feat/**
 
 env:
@@ -23,5 +23,4 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - name: delete existed stand
-        run: |
-          ./github/scripts/hello.sh hey
+        run: ./.github/scripts/hello.sh

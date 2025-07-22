@@ -2,8 +2,7 @@
 
 set -e
 
-check_fn() {
-    REPO=$1
+REPO=$1
 
-    echo "$REPO"
-}
+echo "$REPO"
+

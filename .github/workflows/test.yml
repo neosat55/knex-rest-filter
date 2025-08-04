@@ -17,11 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: on closed
-        run: ./github/scripts/hello.sh knexy
+        run: |
+
   merged:
     runs-on: ubuntu-22.04
     if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v4
       - name: on merged
-        run: ./.github/scripts/hello.sh filtry
+        run: |
+          echo ${{github.ref_name}}
+          echo ${{github.base_ref}}
